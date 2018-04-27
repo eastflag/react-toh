@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import {HEROES} from "./mock-heroes";
 
 const hero = {
   id: 1,
   name: 'WinStorm'
 };
+
+const heroes = HEROES;
 
 class Heroes extends Component {
   constructor(props) {
@@ -26,8 +29,19 @@ class Heroes extends Component {
   render() {
     return (
       <div>
-        <p>{hero.id}</p>
-        <span>{hero.name}</span>
+        <h2>My Heroes</h2>
+        <ul className="heroes">
+          {
+            heroes.map(hero => {
+              return (
+                <li key={hero.id}>
+                  <span className="badge">{hero.id}</span> {hero.name}
+                </li>
+              )
+            })
+          }
+        </ul>
+        
         <div>
           <label>name:
             <input placeholder="name" value={this.state.hero.name} onChange={this.onChange}></input>
