@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {HEROES} from "./mock-heroes";
+import './Heroes.css';
 
 const hero = {
   id: 1,
