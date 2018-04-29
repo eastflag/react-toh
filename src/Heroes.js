@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import {HEROES} from "./mock-heroes";
 import './Heroes.css';
-
-const hero = {
-  id: 1,
-  name: 'WinStorm'
-};
+import Hero from "./Hero";
 
 const heroes = HEROES;
 
@@ -13,18 +9,28 @@ class Heroes extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      hero: hero
+      selectedHero: null
     };
-    this.onChange = this.onChange.bind(this);
+    
+    this.onClick = this.onClick.bind(this);
+    this.changeHandler = this.changeHandler.bind(this);
   }
-
   
-  onChange(e) {
-    hero.name = e.target.value;
+  onClick(hero) {
     console.log(hero);
-    this.setState({
-      hero: hero
-    });
+    // this.setState({
+    //   selectedHero: e.tar
+    // });
+  }
+  
+  changeHandler(name) {
+    console.log('parent', name);
+
+    this.setState(prevState => ({
+      selectedHero: {
+        ...prevState.selectedHero, name: name
+      }
+    }));
   }
   
   render() {
@@ -35,19 +41,17 @@ class Heroes extends Component {
           {
             heroes.map(hero => {
               return (
-                <li key={hero.id}>
+                <li key={hero.id} onClick={e => this.setState({selectedHero: hero})}>
                   <span className="badge">{hero.id}</span> {hero.name}
                 </li>
               )
             })
           }
         </ul>
-        
-        <div>
-          <label>name:
-            <input placeholder="name" value={this.state.hero.name} onChange={this.onChange}></input>
-          </label>
-        </div>
+  
+        {
+          this.state.selectedHero ? <Hero name={this.state.selectedHero.name} onChange={this.changeHandler}></Hero> : ''
+        }
       </div>
     );
   }
