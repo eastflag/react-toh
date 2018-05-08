@@ -17,13 +17,14 @@ export default class Hero extends Component {
       hero: {...this.prevState.hero, name: e.targt.value}
     }));*/
     let temp = Object.assign({}, this.state.hero, {name: e.target.value});
+    console.log(temp);
     this.setState({
       hero: temp
     });
     console.log(this.state.hero);
     
     // 부모 컴포넌트 업데이트 함수 호출
-    this.props.onChange(this.state.hero);
+    this.props.onChange(temp);
   }
   
   render() {
