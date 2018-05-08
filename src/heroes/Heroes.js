@@ -43,7 +43,10 @@ class Heroes extends Component {
           {
             this.state.heroes.map(hero => {
               return (
-                <li key={hero.id} onClick={e => this.setState({selectedHero: hero})}>
+                <li key={hero.id} onClick={e => {
+                  this.setState({selectedHero: hero});
+                  console.log(hero);
+                }}>
                   <span className="badge">{hero.id}</span> {hero.name}
                 </li>
               )
