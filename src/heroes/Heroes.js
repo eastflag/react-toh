@@ -44,7 +44,7 @@ class Heroes extends Component {
         </ul>
   
         {
-          this.state.selectedHero ? <Hero name={this.state.selectedHero.name} /*onChange={this.changeHandler}*/></Hero> : null
+          this.state.selectedHero ? <Hero hero={this.state.selectedHero} /*onChange={this.changeHandler}*/></Hero> : null
         }
       </div>
     );
