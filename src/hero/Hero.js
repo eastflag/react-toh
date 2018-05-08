@@ -10,6 +10,20 @@ export default class Hero extends Component {
     this.changeHandler = this.changeHandler.bind(this);
   }
   
+  componentWillReceiveProps(nextProps) {
+    console.log('componentWillReceiveProps', nextProps);
+    this.setState({ hero: nextProps.hero });
+  }
+  
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('shouldComponentUpdate', nextProps, nextState);
+    return true;
+  }
+  
+  componentDidUpdate(prevProps, prevState) {
+    console.log('componentDidUpdate', prevProps, prevState);
+  }
+  
   changeHandler(e) {
     console.log(this.state.hero);
 
