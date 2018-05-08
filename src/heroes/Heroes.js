@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import {HEROES} from "./mock-heroes";
+import {HEROES} from "../mock-heroes";
 import './Heroes.css';
-import Hero from "./Hero";
+import Hero from "../hero/Hero";
 
 const heroes = HEROES;
 
