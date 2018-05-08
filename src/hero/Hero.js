@@ -12,7 +12,7 @@ export default class Hero extends Component {
   
   changeHandler(e) {
     console.log(this.state.hero);
-    //this.props.onChange(e.target.value);
+
     /*this.setState(prevState => ({
       hero: {...this.prevState.hero, name: e.targt.value}
     }));*/
@@ -21,6 +21,9 @@ export default class Hero extends Component {
       hero: temp
     });
     console.log(this.state.hero);
+    
+    // 부모 컴포넌트 업데이트 함수 호출
+    this.props.onChange(this.state.hero);
   }
   
   render() {
