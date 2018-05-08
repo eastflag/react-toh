@@ -16,7 +16,7 @@ export default class Hero extends Component {
     /*this.setState(prevState => ({
       hero: {...this.prevState.hero, name: e.targt.value}
     }));*/
-    let temp = Object.assign({}, ...this.state.hero, {name: e.target.value});
+    let temp = Object.assign({}, this.state.hero, {name: e.target.value});
     this.setState({
       hero: temp
     });
