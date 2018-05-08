@@ -12,26 +12,20 @@ class Heroes extends Component {
       selectedHero: null
     };
     
-    this.onClick = this.onClick.bind(this);
-    this.changeHandler = this.changeHandler.bind(this);
+    // this.changeHandler = this.changeHandler.bind(this);
   }
   
-  onClick(hero) {
-    console.log(hero);
-    // this.setState({
-    //   selectedHero: e.tar
-    // });
-  }
-  
-  changeHandler(name) {
+/*  changeHandler(name) {
     console.log('parent', name);
+    
+    let tempHero = {...this.state.selectedHero, name: name};
 
-    this.setState(prevState => ({
-      selectedHero: {
-        ...prevState.selectedHero, name: name
-      }
-    }));
-  }
+    this.setState({
+      selectedHero: tempHero
+    });
+  
+    console.log('selectedHero', this.state);
+  }*/
   
   render() {
     return (
@@ -50,7 +44,7 @@ class Heroes extends Component {
         </ul>
   
         {
-          this.state.selectedHero ? <Hero name={this.state.selectedHero.name} onChange={this.changeHandler}></Hero> : ''
+          this.state.selectedHero ? <Hero name={this.state.selectedHero.name} /*onChange={this.changeHandler}*/></Hero> : null
         }
       </div>
     );

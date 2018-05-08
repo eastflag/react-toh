@@ -11,7 +11,7 @@ export default class Hero extends Component {
   }
   
   changeHandler(e) {
-    this.props.onChange(e.target.value);
+    //this.props.onChange(e.target.value);
     this.setState({name: e.target.value});
   }
   
