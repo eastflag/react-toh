@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import {connect} from "react-redux";
+import {changeHero} from "../actions";
 
 export class Hero extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      hero: props.hero
-    };
+    // this.state = {
+    //   hero: props.hero
+    // };
   
     this.changeHandler = this.changeHandler.bind(this);
     console.log(props);
@@ -28,29 +29,28 @@ export class Hero extends Component {
   }
   
   changeHandler(e) {
-    console.log(this.state.hero);
+    console.log(this.props.hero);
 
     /*this.setState(prevState => ({
       hero: {...this.prevState.hero, name: e.targt.value}
     }));*/
-    let temp = Object.assign({}, this.state.hero, {name: e.target.value});
-    console.log(temp);
-    this.setState({
-      hero: temp
-    });
-    console.log(this.state.hero);
+    let tempHero = Object.assign({}, this.props.hero, {name: e.target.value});
+    console.log(tempHero);
+    // this.setState({
+    //   hero: temp
+    // });
     
     // 부모 컴포넌트 업데이트 함수 호출
-    this.props.onChange(temp);
+    this.props.onChangeHero(tempHero);
   }
   
   render() {
     return(
       <div>
-        <p>{this.state.hero.id}</p>
-        <p>{this.state.hero.name}</p>
+        <p>{this.props.hero.id}</p>
+        <p>{this.props.hero.name}</p>
         <label>name:
-          <input placeholder="name" value={this.state.hero.name} onChange={this.changeHandler}></input>
+          <input placeholder="name" value={this.props.hero.name} onChange={this.changeHandler}></input>
         </label>
       </div>
     )
@@ -64,6 +64,12 @@ let mapStateToProps = (state) => {
   }
 };
 
-Hero = connect(mapStateToProps)(Hero);
+let mapDispatchToProps = (dispatch) =>{
+  return {
+    onChangeHero: (hero) => dispatch(changeHero(hero))
+  };
+};
+
+Hero = connect(mapStateToProps, mapDispatchToProps)(Hero);
 
 export default Hero;
