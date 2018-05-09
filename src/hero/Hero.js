@@ -40,8 +40,10 @@ export class Hero extends Component {
     //   hero: temp
     // });
     
-    // 부모 컴포넌트 업데이트 함수 호출
+    // selectedHero 변경사항 dispatch
     this.props.onChangeHero(tempHero);
+    
+    //
   }
   
   render() {
