@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import {connect} from "react-redux";
 
-export default class Hero extends Component {
+export class Hero extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -8,6 +9,7 @@ export default class Hero extends Component {
     };
   
     this.changeHandler = this.changeHandler.bind(this);
+    console.log(props);
   }
   
   // 부모가 selectedHero가 변경시 자식 컴포넌트 변경
@@ -54,3 +56,14 @@ export default class Hero extends Component {
     )
   }
 }
+
+let mapStateToProps = (state) => {
+  console.log(state);
+  return {
+    hero: state.heroReducer.selectedHero
+  }
+};
+
+Hero = connect(mapStateToProps)(Hero);
+
+export default Hero;

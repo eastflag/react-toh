@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {HEROES} from "../mock-heroes";
 import './Heroes.css';
 import Hero from "../hero/Hero";
+import {connect} from "react-redux";
+import {changeHero} from "../actions";
 
 
 
@@ -12,7 +14,7 @@ class Heroes extends Component {
     super(props);
     this.state = {
       heroes: heroes,
-      selectedHero: null
+      // selectedHero: null
     };
     
     this.changeHandler = this.changeHandler.bind(this);
@@ -44,8 +46,9 @@ class Heroes extends Component {
             this.state.heroes.map(hero => {
               return (
                 <li key={hero.id} onClick={e => {
-                  this.setState({selectedHero: hero});
-                  console.log(hero);
+                  // this.setState({selectedHero: hero});
+                  this.props.onChangeHero(hero);
+                  // console.log(hero);
                 }}>
                   <span className="badge">{hero.id}</span> {hero.name}
                 </li>
@@ -55,11 +58,26 @@ class Heroes extends Component {
         </ul>
   
         {
-          this.state.selectedHero ? <Hero hero={this.state.selectedHero} onChange={this.changeHandler}></Hero> : null
+          this.props.hero ? <Hero hero={this.props.hero} onChange={this.changeHandler}></Hero> : null
         }
       </div>
     );
   }
 }
+
+let mapStateToProps = (state) => {
+  console.log(state);
+  return {
+    hero: state.heroReducer.selectedHero
+  }
+};
+
+let mapDispatchToProps = (dispatch) =>{
+  return {
+    onChangeHero: (hero) => dispatch(changeHero(hero))
+  };
+};
+
+Heroes = connect(mapStateToProps, mapDispatchToProps)(Heroes);
 
 export default Heroes;
