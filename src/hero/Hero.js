@@ -16,7 +16,7 @@ export class Hero extends Component {
   // 부모가 selectedHero가 변경시 자식 컴포넌트 변경
   componentWillReceiveProps(nextProps) {
     console.log('componentWillReceiveProps', nextProps);
-    this.setState({ hero: nextProps.hero });
+    // this.setState({ hero: nextProps.hero });
   }
   
   shouldComponentUpdate(nextProps, nextState) {
