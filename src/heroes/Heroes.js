@@ -4,6 +4,7 @@ import './Heroes.css';
 import Hero from "../hero/Hero";
 import {connect} from "react-redux";
 import {changeHero} from "../actions";
+import {Link} from "react-router-dom";
 
 
 
@@ -50,16 +51,18 @@ class Heroes extends Component {
                   this.props.onChangeHero(hero);
                   // console.log(hero);
                 }}>
-                  <span className="badge">{hero.id}</span> {hero.name}
+                  <Link to={`/detail/${hero.id}`}>
+                    <span className="badge">{hero.id}</span> {hero.name}
+                  </Link>
                 </li>
               )
             })
           }
         </ul>
-  
+{/*
         {
           this.props.hero ? <Hero hero={this.props.hero}></Hero> : null
-        }
+        }*/}
       </div>
     );
   }

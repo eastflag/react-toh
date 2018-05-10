@@ -10,7 +10,7 @@ export class Hero extends Component {
     // };
   
     this.changeHandler = this.changeHandler.bind(this);
-    console.log(props);
+    console.log(props.match.params);
   }
   
   // 부모가 selectedHero가 변경시 자식 컴포넌트 변경
