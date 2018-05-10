@@ -12,10 +12,10 @@ class Heroes extends Component {
     let heroes = HEROES;
     
     super(props);
-    this.state = {
-      heroes: heroes,
-      // selectedHero: null
-    };
+    // this.state = {
+    //   heroes: heroes,
+    //   // selectedHero: null
+    // };
     
     this.changeHandler = this.changeHandler.bind(this);
   }
@@ -24,17 +24,17 @@ class Heroes extends Component {
     console.log('parent', hero);
     
     // name 변경
-    let newHeroes = this.state.heroes.map(h => {
-      if (h.id === hero.id) {
-        h.name = hero.name;
-      }
-      return h;
-    });
+    // let newHeroes = this.state.heroes.map(h => {
+    //   if (h.id === hero.id) {
+    //     h.name = hero.name;
+    //   }
+    //   return h;
+    // });
     
     //배열 주소는 변하지 않기 때문에 상태가 변하지 않는다. 배열주소를 변경한다.
-    this.setState({
-      heroes: newHeroes
-    });
+    // this.setState({
+    //   heroes: newHeroes
+    // });
   }
   
   render() {
@@ -43,7 +43,7 @@ class Heroes extends Component {
         <h2>My Heroes</h2>
         <ul className="heroes">
           {
-            this.state.heroes.map(hero => {
+            this.props.heroes.map(hero => {
               return (
                 <li key={hero.id} onClick={e => {
                   // this.setState({selectedHero: hero});
@@ -58,7 +58,7 @@ class Heroes extends Component {
         </ul>
   
         {
-          this.props.hero ? <Hero hero={this.props.hero} onChange={this.changeHandler}></Hero> : null
+          this.props.hero ? <Hero hero={this.props.hero}></Hero> : null
         }
       </div>
     );
@@ -68,7 +68,8 @@ class Heroes extends Component {
 let mapStateToProps = (state) => {
   console.log(state);
   return {
-    hero: state.heroReducer.selectedHero
+    hero: state.heroReducer.selectedHero,
+    heroes: state.heroReducer.heroes
   }
 };
 
