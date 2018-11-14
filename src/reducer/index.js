@@ -1,4 +1,4 @@
-import {CHANGE_HERO} from "../actions";
+import {CHANGE_HERO, SET_HERO} from "../actions";
 import {combineReducers} from "redux";
 import {HEROES} from "../mock-heroes";
 
@@ -18,6 +18,16 @@ const heroReducer = (state = heroInitialState, action) => {
         return h;
       });
       return {selectedHero: action.hero, heroes: newHeroes};
+    
+    case SET_HERO:
+      console.log(state);
+      state.heroes.map(hero => {
+        if (hero.id === action.id) {
+          state.selectedHero = hero;
+        }
+      });
+      return {hero: state.selectedHero};
+      
     default:
       return heroInitialState;
   }

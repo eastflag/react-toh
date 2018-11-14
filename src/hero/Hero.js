@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from "react-redux";
-import {changeHero} from "../actions";
+import {changeHero, setHero} from "../actions";
 
 export class Hero extends Component {
   constructor(props) {
@@ -9,8 +9,11 @@ export class Hero extends Component {
     //   hero: props.hero
     // };
   
+    console.log(props.match.params.id);
+    // params 의 id로 selectedHero 세팅
+    //this.props.onSetHero(props.match.params.id);
+  
     this.changeHandler = this.changeHandler.bind(this);
-    console.log(props.match.params);
   }
   
   // 부모가 selectedHero가 변경시 자식 컴포넌트 변경
@@ -68,6 +71,7 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) =>{
   return {
+    onSetHero: (id) => dispatch(setHero(id)),
     onChangeHero: (hero) => dispatch(changeHero(hero))
   };
 };
